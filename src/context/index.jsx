@@ -8,6 +8,7 @@ const URL = 'http://127.0.0.1:8000/personajes'
 
 export function Proveedor ({ children }) {
   const [buscar, setBuscar] = useState('')
+  const [buscarFamilia, setBuscarFamilia] = useState('')
   const [modalEstaAbierto, setModalEstaAbierto] = useState(false)
   const [personajes, setPersonajes] = useState([])
   const [personajeSeleccionado, setPersonajeSeleccionado] = useState({})
@@ -22,20 +23,35 @@ export function Proveedor ({ children }) {
       .then(data => setPersonajes(data))
   }, [])
 
-  const filtrar = (personajes, buscar) => {
-    if (!buscar) {
+  const filtrar = (tipoBusqueda, personajes, buscar, buscarFamilia) => {
+    if (!tipoBusqueda) {
       return personajes
     }
-    return personajes?.filter(personaje => personaje.nombre.toLowerCase().includes(buscar.toLowerCase()))
+
+    if (tipoBusqueda === 'NOMBRE') {
+      return personajes.filter(personaje => personaje.nombre.toLowerCase().includes(buscar.toLowerCase()))
+    }
+
+    if (tipoBusqueda === 'FAMILIA') {
+      return personajes.filter(personaje => personaje.afiliacion.toLowerCase().includes(buscarFamilia.toLowerCase()))
+    }
+    
+    if (tipoBusqueda === 'NOMBRE_Y_FAMILIA') {
+      return personajes.filter(personaje => personaje.afiliacion.toLowerCase().includes(buscarFamilia.toLowerCase())).filter(personaje => personaje.nombre.toLowerCase().includes(buscar.toLowerCase()))
+    }
   }
 
   useEffect(() => {
-    setPersonajesFiltrados(filtrar(personajes, buscar))
-  }, [personajes, buscar])
+    if (!buscar && !buscarFamilia) setPersonajesFiltrados(filtrar(null, personajes, buscar, buscarFamilia))
+    if (buscar && !buscarFamilia) setPersonajesFiltrados(filtrar('NOMBRE', personajes, buscar, buscarFamilia))
+    if (!buscar && buscarFamilia) setPersonajesFiltrados(filtrar('FAMILIA', personajes, buscar, buscarFamilia))
+    if (buscar && buscarFamilia) setPersonajesFiltrados(filtrar('NOMBRE_Y_FAMILIA', personajes, buscar, buscarFamilia))
+  }, [personajes, buscar, buscarFamilia])
 
   return (
     <contexto.Provider value={{
         buscar,
+        buscarFamilia,
         modalEstaAbierto,
         personajes,
         personajeSeleccionado,
@@ -43,6 +59,7 @@ export function Proveedor ({ children }) {
         abrirModal,
         cerrarModal,
         setBuscar,
+        setBuscarFamilia,
         setPersonajes,
         setPersonajeSeleccionado,
         setPersonajesFiltrados

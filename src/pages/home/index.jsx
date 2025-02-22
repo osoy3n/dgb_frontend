@@ -8,12 +8,14 @@ import ModalDetalle from '../../components/modal-detail'
 import './styles.css'
 
 function Home() {
-  const { personajes, personajesFiltrados, buscar, setBuscar } = useContext(contexto)
+  const { personajes, personajesFiltrados, buscar, buscarFamilia, setBuscar } = useContext(contexto)
 
   const mostrarCard = () => {
-    const personajesParaMostrar = buscar ? personajesFiltrados : personajes
+    const personajesParaMostrar = buscar || buscarFamilia
+      ? personajesFiltrados
+      : personajes
 
-    if (personajesParaMostrar?.length > 0) {
+    if (personajesParaMostrar.length > 0) {
       return personajesParaMostrar.map(personaje => (
         <Card key={personaje.id} data={personaje} />
       ))
