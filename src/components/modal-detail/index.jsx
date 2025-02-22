@@ -11,7 +11,8 @@ function ModalDetalle () {
       className={`${modalEstaAbierto ? 'flex' : 'hidden'} flex-col fixed right-0 rounded-lg bg-gray-100/95 top-[68px] w-[360px] h-[calc(100vh-68px)] overflow-y-auto`}
     >
       <div className='flex justify-between items-center px-2 mt-4'>
-        <h2 className='font-medium text-xl'>Detalles de: 
+        <h2 className='font-medium text-xl'>
+          <span>Detalles de: </span>
           {personajeSeleccionado.data && personajeSeleccionado.data.nombre}
         </h2>
         <span onClick={cerrarModal}>
@@ -31,7 +32,7 @@ function ModalDetalle () {
         {personajeSeleccionado.data &&
           <>
             <span className='font-medium text-2xl mb-2'>Precio: ${personajeSeleccionado.data.precio}</span>
-            <span className='font-light text-sm'>
+            <span className='font-light text-sm mb-2'>
               <span className='font-medium'>Descripción: </span>
               {personajeSeleccionado.data.descripcion}
             </span>
