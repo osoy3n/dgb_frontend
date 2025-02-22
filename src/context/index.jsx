@@ -7,9 +7,14 @@ export const contexto = createContext()
 const URL = 'http://127.0.0.1:8000/personajes'
 
 export function Proveedor ({ children }) {
-  const [personajes, setPersonajes] = useState([])
-  const [personajesFiltrados, setPersonajesFiltrados] = useState([])
   const [buscar, setBuscar] = useState('')
+  const [modalEstaAbierto, setModalEstaAbierto] = useState(false)
+  const [personajes, setPersonajes] = useState([])
+  const [personajeSeleccionado, setPersonajeSeleccionado] = useState({})
+  const [personajesFiltrados, setPersonajesFiltrados] = useState([])
+
+  const abrirModal = () => setModalEstaAbierto(true)
+  const cerrarModal = () => setModalEstaAbierto(false)
 
   useEffect(() => {
     fetch(URL)
@@ -30,12 +35,17 @@ export function Proveedor ({ children }) {
 
   return (
     <contexto.Provider value={{
-        personajes,
-        personajesFiltrados,
         buscar,
-        setPersonajes,
-        setPersonajesFiltrados,
+        modalEstaAbierto,
+        personajes,
+        personajeSeleccionado,
+        personajesFiltrados,
+        abrirModal,
+        cerrarModal,
         setBuscar,
+        setPersonajes,
+        setPersonajeSeleccionado,
+        setPersonajesFiltrados
       }}
     >
       {children}

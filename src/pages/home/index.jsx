@@ -2,14 +2,15 @@ import { ChevronDoubleUpIcon } from '@heroicons/react/24/solid'
 
 import { useContext } from 'react'
 import { contexto } from '../../context'
-import Layout from '../../components/layout'
 import Card from '../../components/card'
+import Layout from '../../components/layout'
+import ModalDetalle from '../../components/modal-detail'
 import './styles.css'
 
 function Home() {
   const { personajes, personajesFiltrados, buscar, setBuscar } = useContext(contexto)
 
-  const renderView = () => {
+  const mostrarCard = () => {
     const personajesParaMostrar = buscar ? personajesFiltrados : personajes
 
     if (personajesParaMostrar?.length > 0) {
@@ -24,7 +25,7 @@ function Home() {
   return (
     <Layout>
       <div className='flex items-center justify-center relative w-80 mb-2'>
-        <h1 className='font-medium text-xl'>MENSAJES DE AKIRA TORIYAMA</h1>
+        <h1 className='font-medium text-xl'>COLECCIÓN DE AKIRA TORIYAMA</h1>
       </div>
 
       <input
@@ -38,8 +39,9 @@ function Home() {
       />
 
       <div className='grid grid-cols-4 gap-3 w-full max-w-screen-lg'>
-        {renderView()}
+        {mostrarCard()}
       </div>
+      <ModalDetalle />
       <a id='back-top' href='#top'>
         <ChevronDoubleUpIcon className='h-6 w-6' />
       </a>
