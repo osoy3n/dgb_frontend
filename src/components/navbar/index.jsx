@@ -15,8 +15,50 @@ function NavBar() {
         </li>
         <span>|</span>
         <li>
+          <NavItem to="/frieza" activeStyle={activeStyle}>
+          Army of Frieza
+          </NavItem>
+        </li>
+        <span>|</span>
+        <li>
+          <NavItem to="/beerus" activeStyle={activeStyle}>
+            Assistant of Beerus
+          </NavItem>
+        </li>
+        <span>|</span>
+        <li>
+          <NavItem to="/vermoud" activeStyle={activeStyle}>
+            Assistant of Vermoud
+          </NavItem>
+        </li>
+        <span>|</span>
+        <li>
+          <NavItem to="/freelancer" activeStyle={activeStyle}>
+            Freelancer
+          </NavItem>
+        </li>
+        <span>|</span>
+        <li>
+          <NavItem to="/troopers" activeStyle={activeStyle}>
+            Pride Troopers
+          </NavItem>
+        </li>
+        <span>|</span>
+        <li>
+          <NavItem to="/villain" activeStyle={activeStyle}>
+            Villain
+          </NavItem>
+        </li>
+        <span>|</span>
+        <li>
+          <NavItem to="fighter" activeStyle={activeStyle}>
+            Z Fighter
+          </NavItem>
+        </li>
+        <span>|</span>
+        <li>
           <NavItem to="/other" activeStyle={activeStyle}>
-            Others
+            Other
           </NavItem>
         </li>
       </ul>
