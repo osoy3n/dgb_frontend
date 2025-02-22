@@ -11,7 +11,9 @@ function ModalDetalle () {
       className={`${modalEstaAbierto ? 'flex' : 'hidden'} flex-col fixed right-0 rounded-lg bg-gray-100/95 top-[68px] w-[360px] h-[calc(100vh-68px)] overflow-y-auto`}
     >
       <div className='flex justify-between items-center px-2 mt-4'>
-        <h2 className='font-medium text-xl'>Detalles de: {personajeSeleccionado.data.nombre}</h2>
+        <h2 className='font-medium text-xl'>Detalles de: 
+          {personajeSeleccionado.data && personajeSeleccionado.data.nombre}
+        </h2>
         <span onClick={cerrarModal}>
           <XMarkIcon className='h-6 w-6 rounded-full cursor-pointer text-white bg-[#e68f01]' />
         </span>
