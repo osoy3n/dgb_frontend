@@ -8,7 +8,7 @@ function ModalDetalle () {
   
   return (
     <aside
-      className={`${modalEstaAbierto ? 'flex' : 'hidden'} flex-col fixed right-0 rounded-lg bg-gray-100/95 top-[68px] w-[360px] h-[calc(100vh-68px)] overflow-y-auto`}
+      className={`${modalEstaAbierto ? 'flex' : 'hidden'} flex-col fixed right-0 rounded-lg bg-gray-100/95 top-[55px] w-[360px] h-[calc(100vh-60px)] overflow-y-auto`}
     >
       <div className='flex justify-between items-center px-2 mt-4'>
         <h2 className='font-medium text-xl'>

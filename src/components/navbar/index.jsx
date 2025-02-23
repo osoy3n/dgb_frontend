@@ -1,12 +1,11 @@
-import { RocketLaunchIcon } from '@heroicons/react/24/solid'
-
 import { useContext } from 'react'
 import { contexto } from '../../context'
+import CarritoCompra from '../cart'
 import NavItem from '../navitem'
 
 function NavBar() {
   const { setBuscar, setBuscarFamilia, setPersonajesFiltrados } = useContext(contexto)
-  const activeStyle = 'underline underline-offset-4'
+  const activeStyle = 'underline underline-offset-4 text-[#e68f01] font-semibold'
   
   const limpiarFiltro = () => {
     setBuscar('')
@@ -15,7 +14,7 @@ function NavBar() {
   }
 
   return (
-    <nav className='flex justify-between items-center bg-white fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
+    <nav className='flex justify-between items-center bg-lime-50 fixed z-10 top-0 w-full py-2.5 px-8 text-sm font-light'>
       <ul className='flex items-center gap-3'>
         <li onClick={limpiarFiltro}>
           <NavItem to='/' activeStyle={activeStyle}>
@@ -72,7 +71,7 @@ function NavBar() {
         </li>
       </ul>
 
-      <RocketLaunchIcon className='h-10 w-10' />
+      <CarritoCompra />
     </nav>
   )
 }

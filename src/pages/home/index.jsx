@@ -26,8 +26,8 @@ function Home() {
 
   return (
     <Layout>
-      <div className='flex items-center justify-center relative w-80 mb-2'>
-        <h1 className='font-medium text-xl'>COLECCIÓN DE AKIRA TORIYAMA</h1>
+      <div className='flex items-center justify-center relative w-80 my-2'>
+        <h1 className='font-medium text-xl text-amber-50'>COLECCIÓN DE AKIRA TORIYAMA</h1>
       </div>
 
       <input
@@ -35,7 +35,7 @@ function Home() {
         name='buscar'
         value={buscar}
         onChange={(event) => setBuscar(event.target.value)}
-        className='rounded-lg border border-black w-80 p-2 mb-4'
+        className='text-amber-50 rounded-lg border border-amber-50 w-80 p-2 mb-4'
         type='text'
         placeholder='Goku, Vegeta...'
       />
