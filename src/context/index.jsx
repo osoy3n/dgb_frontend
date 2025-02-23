@@ -9,6 +9,7 @@ const URL = 'http://127.0.0.1:8000/personajes'
 export function Proveedor ({ children }) {
   const [buscar, setBuscar] = useState('')
   const [buscarFamilia, setBuscarFamilia] = useState('')
+  const [checkoutEstaAbierto, setCheckoutEstaAbierto] = useState(false)
   const [comprasDelCarrito, setComprasDelCarrito] = useState([])
   const [modalEstaAbierto, setModalEstaAbierto] = useState(false)
   const [personajes, setPersonajes] = useState([])
@@ -17,6 +18,9 @@ export function Proveedor ({ children }) {
 
   const abrirModal = () => setModalEstaAbierto(true)
   const cerrarModal = () => setModalEstaAbierto(false)
+
+  const abrirCheckout = () => setCheckoutEstaAbierto(true)
+  const cerrarCheckout = () => setCheckoutEstaAbierto(false)
 
   useEffect(() => {
     fetch(URL)
@@ -53,12 +57,15 @@ export function Proveedor ({ children }) {
     <contexto.Provider value={{
         buscar,
         buscarFamilia,
+        checkoutEstaAbierto,
         comprasDelCarrito,
         modalEstaAbierto,
         personajes,
         personajeSeleccionado,
         personajesFiltrados,
+        abrirCheckout,
         abrirModal,
+        cerrarCheckout,
         cerrarModal,
         setBuscar,
         setBuscarFamilia,

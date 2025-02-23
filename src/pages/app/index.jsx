@@ -2,6 +2,7 @@ import { useRoutes, BrowserRouter } from 'react-router-dom'
 import { Proveedor } from '../../context'
 import Home from '../home'
 import NavBar from '../../components/navbar'
+import DetallesDelCheckout from '../../components/checkout'
 
 const AppRouters = () => {
   const routes = useRoutes([
@@ -25,6 +26,7 @@ function App() {
       <BrowserRouter>
         <AppRouters />
         <NavBar />
+        <DetallesDelCheckout />
       </BrowserRouter>
     </Proveedor>
   )

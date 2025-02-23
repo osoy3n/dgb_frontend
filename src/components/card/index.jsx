@@ -1,23 +1,23 @@
 /* eslint-disable react/prop-types */
-
 import { PlusIcon, CheckIcon } from '@heroicons/react/24/solid'
 
 import { useContext } from "react"
 import { contexto } from "../../context"
 
 function Card ({ data }) {
-  const { abrirModal, comprasDelCarrito, setComprasDelCarrito, setPersonajeSeleccionado } = useContext(contexto)
+  const { abrirModal, abrirCheckout, cerrarModal, cerrarCheckout , comprasDelCarrito, setComprasDelCarrito, setPersonajeSeleccionado } = useContext(contexto)
 
   const handleClick = () => {
     abrirModal()
+    cerrarCheckout()
     setPersonajeSeleccionado({data})
   }
 
   const agregarAlCarrito = (event) => {
     event.stopPropagation()
     setComprasDelCarrito([...comprasDelCarrito, data])
-    // openCheckoutSideMenu()
-    // closeProductDetail()
+    abrirCheckout()
+    cerrarModal()
   }
 
   const mostrarIcono = (id) => {
