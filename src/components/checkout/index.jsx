@@ -12,12 +12,13 @@ function DetallesDelCheckout () {
     cerrarCheckout,
     checkoutEstaAbierto,
     comprasDelCarrito,
-    orden,
-    setBuscar,
-    setBuscarFamilia,
+    hayUsuarioAuth,
+    // orden,
+    // setBuscar,
+    // setBuscarFamilia,
     setComprasDelCarrito,
-    setOrden,
-    setPersonajesFiltrados
+    // setOrden,
+    // setPersonajesFiltrados
   } = useContext(contexto)
 
   const borrarCard = (id) => {
@@ -25,23 +26,48 @@ function DetallesDelCheckout () {
     setComprasDelCarrito(filtrar)
   }
 
-  const hacerCheckout = () => {
-    const date = new Date()
-
-    const ordenAgregar = {
-      date: date.toLocaleDateString(),
-      products: comprasDelCarrito,
-      totalProducts: comprasDelCarrito.length,
-      totalPrecio: totalPrecio(comprasDelCarrito)
+  const mostrarBoton = () => {
+    if (hayUsuarioAuth) {
+      return (
+        <Link to='/orden'>
+          <button
+            onClick={cerrarCheckout}
+            className='bg-[#e68f01] text-white py-3 w-full rounded-lg cursor-pointer'
+          >
+            Checkout
+          </button>
+        </Link>
+      )
     }
-    
-    setOrden([...orden, ordenAgregar])
-    setComprasDelCarrito([])
-    cerrarCheckout()
-    setPersonajesFiltrados([])
-    setBuscar('')
-    setBuscarFamilia('')
+    else {
+      return (
+        <Link to='/auth'>
+          <button
+            onClick={cerrarCheckout}
+            className='bg-[#e68f01] text-white py-3 w-full rounded-lg cursor-pointer'
+          >
+            Login
+          </button>
+        </Link>
+      )
+    }
   }
+
+  // const hacerCheckout = () => {
+  //   const ordenAgregar = {
+  //     idUsuario: 1,
+  //     productos: comprasDelCarrito,
+  //     totalItems: comprasDelCarrito.length,
+  //     totalPrecio: totalPrecio(comprasDelCarrito)
+  //   }
+    
+  //   cerrarCheckout()
+  //   setBuscar('')
+  //   setBuscarFamilia('')
+  //   setComprasDelCarrito([])
+  //   setOrden([...orden, ordenAgregar])
+  //   setPersonajesFiltrados([])
+  // }
   
   return (
     <aside
@@ -74,9 +100,7 @@ function DetallesDelCheckout () {
           <span className='font-light'>Total:</span>
           <span className='font-medium'>${totalPrecio(comprasDelCarrito)}</span>
         </p>
-        <Link to='/orders/last'>
-          <button className='bg-[#e68f01] text-white py-3 w-full rounded-lg' onClick={hacerCheckout}>Checkout</button>
-        </Link>
+        {mostrarBoton()}
       </div>
     </aside>
   )
