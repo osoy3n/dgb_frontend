@@ -4,13 +4,57 @@ import CarritoCompra from '../cart'
 import NavItem from '../navitem'
 
 function NavBar() {
-  const { setBuscar, setBuscarFamilia, setPersonajesFiltrados } = useContext(contexto)
+  const {
+    cerrarCheckout,
+    hayUsuarioAuth,
+    setBuscar,
+    setBuscarFamilia,
+    setHayUsuarioAuth,
+    setPersonajesFiltrados
+  } = useContext(contexto)
   const activeStyle = 'underline underline-offset-4 text-[#e68f01] font-semibold'
   
   const limpiarFiltro = () => {
     setBuscar('')
     setBuscarFamilia('')
     setPersonajesFiltrados([])
+  }
+
+  const cerrarSesion = () => {
+    setHayUsuarioAuth(false)
+    localStorage.removeItem('usuarioAuth')
+  }
+
+  const mostrarOpccion = () => {
+    if (hayUsuarioAuth) {
+      return (
+        <>
+          <li onClick={cerrarCheckout}>
+            <NavItem to='/compras' activeStyle={activeStyle}>
+              Mis Compras
+            </NavItem>
+          </li>
+          <span>|</span>
+          
+          <li onClick={cerrarSesion} className='cursor-pointer'>
+            Cerrar Sesión
+          </li>
+          <span>|</span>
+        </>
+      )
+    }
+    else {
+      return (
+        <>
+          <li onClick={cerrarCheckout}>
+            <NavItem to='/auth' activeStyle={activeStyle}>
+              Login
+            </NavItem>
+          </li>
+          <span>|</span>
+        </>
+      )
+    }
   }
 
   return (
@@ -71,7 +115,12 @@ function NavBar() {
         </li>
       </ul>
 
-      <CarritoCompra />
+      <ul className='flex items-center gap-3'>
+        {mostrarOpccion()}
+        <li>
+          <CarritoCompra />
+        </li>
+      </ul>
     </nav>
   )
 }
