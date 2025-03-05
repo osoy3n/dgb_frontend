@@ -1,12 +1,19 @@
-import { useRoutes, BrowserRouter } from 'react-router-dom'
-import { Proveedor } from '../../context'
+import { useRoutes, BrowserRouter, Navigate } from 'react-router-dom'
+import { contexto, Proveedor } from '../../context'
+import Auth from '../auth'
+import DetallesDelCheckout from '../../components/checkout'
 import Home from '../home'
 import NavBar from '../../components/navbar'
-import DetallesDelCheckout from '../../components/checkout'
+import OrdenDeCompra from '../order'
+import OrdenesHechas from '../orders'
+import { useContext } from 'react'
 
 const AppRouters = () => {
+  const { hayUsuarioAuth } = useContext(contexto)
+
   const routes = useRoutes([
     { path: '/', element: <Home /> },
+    { path: '/auth', element: <Auth /> },
     { path: '/frieza', element: <Home /> },
     { path: '/beerus', element: <Home /> },
     { path: '/vermoud', element: <Home /> },
@@ -14,7 +21,9 @@ const AppRouters = () => {
     { path: '/troopers', element: <Home /> },
     { path: '/villain', element: <Home /> },
     { path: '/fighter', element: <Home /> },
-    { path: '/other', element: <Home /> }
+    { path: '/other', element: <Home /> },
+    { path: '/orden', element: hayUsuarioAuth ? <OrdenDeCompra /> : <Navigate to='/auth' /> },
+    { path: '/compras', element: hayUsuarioAuth ? <OrdenesHechas /> : <Navigate to='/auth' /> }
   ])
 
   return routes
