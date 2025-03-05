@@ -1,20 +1,26 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
+import axios from 'axios'
+
 import { createContext, useState, useEffect } from 'react'
 
 export const contexto = createContext()
 
-const URL = 'http://127.0.0.1:8000/personajes'
+const axiosInstance = axios.create({
+  baseURL: 'http://127.0.0.1:8000'
+})
 
 export function Proveedor ({ children }) {
   const [buscar, setBuscar] = useState('')
   const [buscarFamilia, setBuscarFamilia] = useState('')
   const [checkoutEstaAbierto, setCheckoutEstaAbierto] = useState(false)
   const [comprasDelCarrito, setComprasDelCarrito] = useState([])
+  const [hayUsuarioAuth, setHayUsuarioAuth] = useState(false)
   const [modalEstaAbierto, setModalEstaAbierto] = useState(false)
   const [personajes, setPersonajes] = useState([])
   const [personajeSeleccionado, setPersonajeSeleccionado] = useState({})
   const [personajesFiltrados, setPersonajesFiltrados] = useState([])
+  const [usuarios, setUsuarios] = useState([])
 
   const abrirModal = () => setModalEstaAbierto(true)
   const cerrarModal = () => setModalEstaAbierto(false)
@@ -23,10 +29,17 @@ export function Proveedor ({ children }) {
   const cerrarCheckout = () => setCheckoutEstaAbierto(false)
 
   useEffect(() => {
-    fetch(URL)
-      .then(respuesta => respuesta.json())
-      .then(data => setPersonajes(data))
+    axiosInstance.get('/personajes')
+      .then(respuesta => setPersonajes(respuesta.data))
+    
+    axiosInstance.get('/usuarios')
+      .then(respuesta => setUsuarios(respuesta.data))
   }, [])
+
+  useEffect(() => {
+    const sesionUsuario = localStorage.getItem('usuarioAuth')
+    sesionUsuario ? setHayUsuarioAuth(true) : setHayUsuarioAuth(false)
+  }, [setHayUsuarioAuth])
 
   const filtrar = (tipoBusqueda, personajes, buscar, buscarFamilia) => {
     if (!tipoBusqueda) {
@@ -59,10 +72,12 @@ export function Proveedor ({ children }) {
         buscarFamilia,
         checkoutEstaAbierto,
         comprasDelCarrito,
+        hayUsuarioAuth,
         modalEstaAbierto,
         personajes,
         personajeSeleccionado,
         personajesFiltrados,
+        usuarios,
         abrirCheckout,
         abrirModal,
         cerrarCheckout,
@@ -70,6 +85,7 @@ export function Proveedor ({ children }) {
         setBuscar,
         setBuscarFamilia,
         setComprasDelCarrito,
+        setHayUsuarioAuth,
         setPersonajes,
         setPersonajeSeleccionado,
         setPersonajesFiltrados
