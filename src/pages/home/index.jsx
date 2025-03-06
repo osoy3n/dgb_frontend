@@ -20,7 +20,11 @@ function Home() {
         <Card key={personaje.id} data={personaje} />
       ))
     } else {
-      return <p>No se encontraron resultados</p>
+      return (
+        <p className='flex items-center justify-center text-amber-50'>
+          No se encontraron resultados
+        </p>
+      )
     }
   }
 
@@ -43,7 +47,9 @@ function Home() {
       <div className='grid grid-cols-4 gap-3 w-full max-w-screen-lg'>
         {mostrarCard()}
       </div>
+
       <ModalDetalle />
+
       <a id='back-top' href='#top'>
         <ChevronDoubleUpIcon className='h-6 w-6' />
       </a>
