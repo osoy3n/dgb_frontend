@@ -6,19 +6,13 @@ import { contexto } from '../../context'
 import { totalPrecio } from '../../utils/cal-price'
 import CardCheckout from '../../components/card-checkout'
 
-
 function DetallesDelCheckout () {
   const {
     cerrarCheckout,
     checkoutEstaAbierto,
     comprasDelCarrito,
     hayUsuarioAuth,
-    // orden,
-    // setBuscar,
-    // setBuscarFamilia,
     setComprasDelCarrito,
-    // setOrden,
-    // setPersonajesFiltrados
   } = useContext(contexto)
 
   const borrarCard = (id) => {
@@ -53,22 +47,6 @@ function DetallesDelCheckout () {
     }
   }
 
-  // const hacerCheckout = () => {
-  //   const ordenAgregar = {
-  //     idUsuario: 1,
-  //     productos: comprasDelCarrito,
-  //     totalItems: comprasDelCarrito.length,
-  //     totalPrecio: totalPrecio(comprasDelCarrito)
-  //   }
-    
-  //   cerrarCheckout()
-  //   setBuscar('')
-  //   setBuscarFamilia('')
-  //   setComprasDelCarrito([])
-  //   setOrden([...orden, ordenAgregar])
-  //   setPersonajesFiltrados([])
-  // }
-  
   return (
     <aside
       className={`${checkoutEstaAbierto ? 'flex' : 'hidden'} flex-col fixed right-0 rounded-lg bg-gray-100/95 top-[55px] w-[360px] h-[calc(100vh-60px)] overflow-y-aut`}
