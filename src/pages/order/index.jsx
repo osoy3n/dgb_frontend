@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { contexto, axiosInstance } from '../../context'
 import { totalPrecio } from '../../utils/cal-price'
 import Card from '../../components/card'
@@ -7,13 +7,15 @@ import Layout from '../../components/layout'
 
 function OrdenDeCompra() {
   const {
-    comprasDelCarrito,
     cerrarCheckout,
+    comprasDelCarrito,
     setBuscar,
     setBuscarFamilia,
     setComprasDelCarrito,
     setPersonajesFiltrados
   } = useContext(contexto)
+
+  const navigate = useNavigate()
 
   const hacerCheckout = async () => {
     const usuario = JSON.parse(localStorage.getItem('usuarioAuth'))
@@ -36,6 +38,8 @@ function OrdenDeCompra() {
     setBuscarFamilia('')
     setComprasDelCarrito([])
     setPersonajesFiltrados([])
+
+    navigate('/compras')
   }
 
   const mostrarCard = () => {
@@ -49,14 +53,12 @@ function OrdenDeCompra() {
   const mostrarBoton = () => {
     if (comprasDelCarrito.length > 0) {
       return (
-        <Link to={'/compras'}>
-          <button
-            onClick={hacerCheckout}
-            className='bg-[#e68f01] text-white py-3 mt-6 w-96 rounded-lg cursor-pointer'
-          >
-            Comprar
-          </button>
-        </Link>
+        <button
+          onClick={hacerCheckout}
+          className='bg-[#e68f01] text-white py-3 mt-6 w-96 rounded-lg cursor-pointer'
+        >
+          Comprar
+        </button>
       )
     } else {
       return (
