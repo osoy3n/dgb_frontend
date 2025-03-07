@@ -5,9 +5,9 @@ const TablaCompras = ({ data, cuandoEdita, cuandoElimina }) => {
     cuandoEdita(idCompra)
   }
 
-  const eliminar = (idCompra) => {
+  const eliminar = (idCompra, idOrden) => {
     if (window.confirm('¿Estás seguro de eliminar esta compra?')) {
-      cuandoElimina(idCompra)
+      cuandoElimina(idCompra, idOrden)
     }
   }
 
@@ -31,7 +31,7 @@ const TablaCompras = ({ data, cuandoEdita, cuandoElimina }) => {
                 <img 
                   src={compra.personaje.imagen} 
                   alt={compra.personaje.nombre} 
-                  className="h-12 w-12 rounded-full object-cover object-top"
+                  className="h-14 w-14 border border-gray-300 rounded-full object-cover object-top"
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -46,6 +46,7 @@ const TablaCompras = ({ data, cuandoEdita, cuandoElimina }) => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">No.: {compra.id_orden}</div>
+                <div className="text-sm text-gray-600">Items: {compra.orden.total_item}</div>
                 <div className="text-sm text-gray-600">Total: ${compra.orden.total_precio.toLocaleString()}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -56,7 +57,7 @@ const TablaCompras = ({ data, cuandoEdita, cuandoElimina }) => {
                   Editar
                 </button>
                 <button
-                  onClick={() => eliminar(compra.id_compra)}
+                  onClick={() => eliminar(compra.id_compra, compra.id_orden)}
                   className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
                 >
                   Eliminar
