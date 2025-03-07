@@ -52,7 +52,7 @@ const TablaCompras = ({ data, cuandoEdita, cuandoElimina }) => {
               <td className="px-6 py-4 whitespace-nowrap">
                 <button
                   onClick={() => editar(compra.id_compra)}
-                  className="mr-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
+                  className="hidden mr-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
                 >
                   Editar
                 </button>
