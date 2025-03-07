@@ -1,16 +1,9 @@
-import axios from 'axios'
-
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { contexto } from '../../context'
+import { contexto, axiosInstance } from '../../context'
 import { totalPrecio } from '../../utils/cal-price'
 import Card from '../../components/card'
 import Layout from '../../components/layout'
-
-const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
-  withCredentials: false
-})
 
 function OrdenDeCompra() {
   const {
@@ -50,10 +43,25 @@ function OrdenDeCompra() {
       return comprasDelCarrito.map(personaje => (
         <Card key={personaje.id} data={personaje} />
       ))
+    }
+  }
+
+  const mostrarBoton = () => {
+    if (comprasDelCarrito.length > 0) {
+      return (
+        <Link to={'/compras'}>
+          <button
+            onClick={hacerCheckout}
+            className='bg-[#e68f01] text-white py-3 mt-6 w-96 rounded-lg cursor-pointer'
+          >
+            Comprar
+          </button>
+        </Link>
+      )
     } else {
       return (
         <p className='flex items-center justify-center text-amber-50'>
-          No hay personajes para comprar
+          No hay orden pendiente
         </p>
       )
     }
@@ -62,21 +70,14 @@ function OrdenDeCompra() {
   return (
     <Layout>
       <div className='flex items-center justify-center relative w-80 my-2'>
-        <h3 className='font-medium text-xl text-amber-50 mb-4'>Lista de personajes en el carrito</h3>
+        <h3 className='font-medium text-xl text-amber-50 mb-4'>Checkout</h3>
       </div>
 
       <div className='grid grid-cols-4 gap-3 w-full max-w-screen-lg'>
         {mostrarCard()}
       </div>
 
-      <Link to={'/compras'}>
-        <button
-          onClick={hacerCheckout}
-          className='bg-[#e68f01] text-white py-3 mt-6 w-96 rounded-lg cursor-pointer'
-        >
-          Comprar
-        </button>
-      </Link>
+      {mostrarBoton()}
     </Layout>
   )
 }
