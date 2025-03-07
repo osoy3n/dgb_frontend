@@ -53,7 +53,7 @@ function Card ({ data }) {
           {data.afiliacion}
         </span>
         <span className='absolute bottom-0 right-0 bg-gray-100/60 rounded-md text-xs font-medium px-1 py-0.5'>
-          ${data.precio}
+          ${data.precio.toLocaleString()}
         </span>
         <img
           className='w-full h-full object-contain rounded-lg'

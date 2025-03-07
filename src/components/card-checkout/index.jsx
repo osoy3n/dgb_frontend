@@ -18,7 +18,7 @@ function CardCheckout ({ id, nombre, imagen, precio, borrarCard }) {
       </div>
 
       <div className='flex items-center gap-2'>
-        <p className='text-lg font-medium'>${precio}</p>
+        <p className='text-lg font-medium'>${precio.toLocaleString()}</p>
         {renderXMarkIcon}
       </div>
     </div>

@@ -31,7 +31,7 @@ function ModalDetalle () {
       <p className='flex flex-col p-6'>
         {personajeSeleccionado.data &&
           <>
-            <span className='font-medium text-2xl mb-2'>Precio: ${personajeSeleccionado.data.precio}</span>
+            <span className='font-medium text-2xl mb-2'>Precio: ${personajeSeleccionado.data.precio.toLocaleString()}</span>
             <span className='font-light text-sm mb-2'>
               <span className='font-medium'>Descripción: </span>
               {personajeSeleccionado.data.descripcion}

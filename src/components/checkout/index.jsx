@@ -76,7 +76,7 @@ function DetallesDelCheckout () {
       <div className='pl-2 pr-6 mb-2'>
         <p className='flex justify-between items-center mb-2'>
           <span className='font-light'>Total:</span>
-          <span className='font-medium'>${totalPrecio(comprasDelCarrito)}</span>
+          <span className='font-medium'>${totalPrecio(comprasDelCarrito).toLocaleString()}</span>
         </p>
         {mostrarBoton()}
       </div>
