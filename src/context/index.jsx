@@ -6,7 +6,7 @@ import { createContext, useState, useEffect } from 'react'
 
 export const contexto = createContext()
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: 'http://127.0.0.1:8000'
 })
 
@@ -18,6 +18,7 @@ export function Proveedor ({ children }) {
   const [hayUsuarioAuth, setHayUsuarioAuth] = useState(false)
   const [modalEstaAbierto, setModalEstaAbierto] = useState(false)
   const [personajes, setPersonajes] = useState([])
+  const [personajesComprados, setPersonajesComprados] = useState([])
   const [personajeSeleccionado, setPersonajeSeleccionado] = useState({})
   const [personajesFiltrados, setPersonajesFiltrados] = useState([])
   const [usuarios, setUsuarios] = useState([])
@@ -75,6 +76,7 @@ export function Proveedor ({ children }) {
         hayUsuarioAuth,
         modalEstaAbierto,
         personajes,
+        personajesComprados,
         personajeSeleccionado,
         personajesFiltrados,
         usuarios,
@@ -87,6 +89,7 @@ export function Proveedor ({ children }) {
         setComprasDelCarrito,
         setHayUsuarioAuth,
         setPersonajes,
+        setPersonajesComprados,
         setPersonajeSeleccionado,
         setPersonajesFiltrados
       }}
