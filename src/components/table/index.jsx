@@ -51,8 +51,9 @@ const TablaCompras = ({ data, cuandoEdita, cuandoElimina }) => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button
+                  disabled={true}
                   onClick={() => editar(compra.id_compra)}
-                  className="hidden mr-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
+                  className="disabled:bg-black/40 disabled:cursor-default mr-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
                 >
                   Editar
                 </button>
